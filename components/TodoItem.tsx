@@ -1,9 +1,16 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { ITodo } from '@/types/ITodo';
+import { StyleSheet, Text, View } from 'react-native';
 
-const TodoItem = ({ todo, isLoading }: any) => {
+
+
+type TodoItemProps = {
+  todo: ITodo;
+  isLoading: boolean;
+};
+
+const TodoItem = ({ todo, isLoading }: TodoItemProps) => {
   return (
-    <View style={[styles.container, isLoading && styles.containerCompleted]}>
+    <View style={[styles.container, todo.completed && styles.containerCompleted]}>
       <View style={styles.meta}>
         <Text style={styles.label}>ID:</Text>
         <Text style={[styles.value, isLoading && styles.completed]}>
@@ -12,13 +19,13 @@ const TodoItem = ({ todo, isLoading }: any) => {
       </View>
       <View style={styles.meta}>
         <Text style={styles.label}>Task:</Text>
-        <Text style={[styles.value, isLoading && styles.completed]}>
+        <Text style={[styles.value, todo.completed && styles.completed]}>
           {todo.todo}
         </Text>
       </View>
       <View style={styles.meta}>
         <Text style={styles.label}>User ID:</Text>
-        <Text style={[styles.value, isLoading && styles.completed]}>
+        <Text style={[styles.value, todo.completed && styles.completed]}>
           {todo.userId}
         </Text>
       </View>
